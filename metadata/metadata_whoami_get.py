@@ -1,7 +1,8 @@
 # The 'requests' library for Python can be used to make calls to the MoneyMoov API in
 # popular python frameworks such as Django and Flask.
 
-import requests, os
+import requests
+import os
 
 # Remember, the JWT access token must be securely stored ('os' module above allows storage in environment variable)
 jwtToken = os.environ['NOFRIXION_SANDBOX_TOKEN']
