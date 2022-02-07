@@ -3,14 +3,13 @@
 
 import requests
 
-apiServer = "https://api-sandbox.nofrixion.com/api/v1/"
-apiEndpoint = "metadata/version"
+url = "https://api-sandbox.nofrixion.com/api/v1/metadata/version"
 
 headers = {
     "Accept": "text/plain"
 }
 
-response = requests.request("GET", apiServer + apiEndpoint, headers=headers)
+response = requests.request("GET", url, headers=headers)
 
 # The response text contains the API Version
 print(response.text)
