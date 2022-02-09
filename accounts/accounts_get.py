@@ -1,3 +1,17 @@
+#-----------------------------------------------------------------------------
+# Description: Example of calling the NoFrixion MoneyMoov API Accounts Get
+# method. It provides a convenient way to retrieve a list of your payment
+# accounts.
+#
+# Usage:
+# 1. Create a user access token in the sandbox portal at:
+#    https:#portal-sandbox.nofrixion.com.
+# 2. Set the token as an environment variable in your console:
+#    set NOFRIXION_SANDBOX_TOKEN=<JWT token from previous step>
+# 3. Run the script using the command: python -u "filename"
+# 4. If successful a list of your accounts will be displayed.
+#-----------------------------------------------------------------------------
+
 # The 'requests' library for Python can be used to make calls to the MoneyMoov API in
 # popular python frameworks such as Django and Flask.
 import requests
