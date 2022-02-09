@@ -21,7 +21,13 @@ import os
 # Remember, the JWT access token must be securely stored ('os' module above allows storage in environment variable)
 jwtToken = os.environ['NOFRIXION_SANDBOX_TOKEN']
 
-url = "https://api-sandbox.nofrixion.com/api/v1/accounts"
+# need to specify the account to get transactions for
+accountId = "A120P0JR"
+
+# by default each call will return 20 transactions, we can change this using a query parameter as shown below.
+queryParams = "?size=10"
+
+url = f"https://api-sandbox.nofrixion.com/api/v1/accounts/{accountId}/transactions{queryParams}"
 
 headers = {
     "Accept": "application/json",
@@ -30,12 +36,21 @@ headers = {
 
 response = requests.request("GET", url, headers=headers)
 
-# JSON response is stored as Python dict
-accountList = json.loads(response.text)
+# The response is a JSON object containing
+# - transactions: a property that is an array of JSON objects
+# - metdata fields: 'page', 'pageStartBalance', 'size', 'totalPages', 'totalSize'
+#   - these can be used to help with pagination of results (and can be passed in the query string)
 
-# exmaple: view keys/values for each account in the list
-for account in accountList:
-    for accountField in account.keys():
-        print(f"{accountField}: {account[accountField]}")
-    # Print a blank line between accounts for readability
+data = response.json()
+
+# example: view keys/values for each transaction in the list
+# you will notice that the "merchantAccount" property contains further nested objects
+
+for transaction in data['transactions']:
+    for transactionField in transaction.keys():
+        print(f"{transactionField}: {transaction[transactionField]}")
+    # Print a blank line between transactions for readability
     print()
+
+# use metadata to summarise displayed transactions
+print(f"Showing page {data['page'] + 1} of {data['totalPages'] + 1}. {data['totalSize']} transactions in total.")

@@ -33,7 +33,7 @@ response = requests.request("GET", url, headers=headers)
 # JSON response is stored as Python dict
 accountList = json.loads(response.text)
 
-# exmaple: view keys/values for each account in the list
+# example: view keys/values for each account in the list
 for account in accountList:
     for accountField in account.keys():
         print(f"{accountField}: {account[accountField]}")
