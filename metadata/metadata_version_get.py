@@ -13,17 +13,13 @@
 
 import requests
 
-url = "https://api-sandbox.nofrixion.com/api/v1/metadata/version"
+baseUrl = "https://api-sandbox.nofrixion.com/api/v1/metadata/version"
 
 headers = {
-    "Accept": "text/plain"
+    "Accept": "application/json"
 }
 
-response = requests.request("GET", url, headers=headers)
+response = requests.request("GET", baseUrl, headers=headers)
 
-# The response text contains the API Version
-print(response.text)
-
-# Can also check HTTP status code/message
-print(response.status_code)
-print(response.reason)
+# The response json contains the API Version details
+print(response.json())
