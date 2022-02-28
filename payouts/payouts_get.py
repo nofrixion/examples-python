@@ -8,7 +8,7 @@
 # 2. Set the token as an environment variable in your console:
 #    set NOFRIXION_USER_TOKEN=<JWT token from previous step>
 # 3. Run the script using the command: python -u "filename"
-# 4. If successful user a list of payouts will be displayed.
+# 4. If successful a list of payouts will be displayed.
 #-----------------------------------------------------------------------------
 
 # The 'requests' module for Python can be used to make calls to the MoneyMoov API in popular python frameworks such as Django and Flask.
