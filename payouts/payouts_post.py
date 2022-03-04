@@ -29,19 +29,22 @@ headers = {
 paymentData = {
     "AccountID": "A120P0JR",
     "Currency": "EUR",
-    "Amount": "0.99",
+    "Amount": "0.01",
     "YourReference": "My reference",
     "DestinationIBAN": "GB33BUKB20201555555555",
     "DestinationAccountName": "Destination Name",
     "TheirReference": "Their reference"
 }
 
-response = requests.request("POST", baseUrl, headers=headers, data=paymentData)
+try:
+    response = requests.request("POST", baseUrl, headers=headers, data=paymentData)
 
-if response.ok:
-    # On successful payout creation, the API returns the payout object
-    print(response.json())
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+    if response.ok:
+        # On successful payout creation, the API returns the payout object
+        print(response.json())
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
 
+except Exception as ex:
+    print(ex)
