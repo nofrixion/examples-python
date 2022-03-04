@@ -22,7 +22,7 @@ import os
 jwtToken = os.environ['NOFRIXION_MERCHANT_TOKEN']
 
 baseUrl = "https://api-sandbox.nofrixion.com/api/v1/paymentrequests"
-paymentRequestID = "1e029816-92cc-4285-9887-08d9f65a6611"
+paymentRequestID = "07b8f673-e3bb-4e1c-9d2b-08d9f6a98048"
 
 headers = {
     "Accept": "application/json",
