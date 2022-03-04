@@ -25,12 +25,16 @@ headers = {
     "Authorization": f"Bearer {jwtToken}"
 }
 
-response = requests.request("GET", baseUrl, headers=headers)
+try:
+    response = requests.request("GET", baseUrl, headers=headers)
 
-if response.ok:
-    # Returns JSON object containing profile...
-    userProfile = response.json()
-    print(userProfile)
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+    if response.ok:
+        # Returns JSON object containing profile...
+        userProfile = response.json()
+        print(userProfile)
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
+
+except Exception as ex:
+    print(ex)

@@ -30,11 +30,15 @@ settingName = "CurrentMerchantID"
 settingValue = "6f80138d-870b-4b07-8bc4-a4fd33a0d30f"
 postData = f"userSettings[0].Name={settingName}&userSettings[0].Value={settingValue}"
 
-response = requests.request("POST", baseUrl, headers=headers, data=postData)
+try:
+    response = requests.request("POST", baseUrl, headers=headers, data=postData)
 
-if response.ok:
-    # HTTP status code 200 on success
-    print(response.status_code)
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+    if response.ok:
+        # HTTP status code 200 on success
+        print(response.status_code)
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
+
+except Exception as ex:
+    print(ex)

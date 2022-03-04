@@ -20,19 +20,23 @@ import os
 jwtToken = os.environ['NOFRIXION_USER_TOKEN']
 
 baseUrl = "https://api-sandbox.nofrixion.com/api/v1/user/tokens"
-tokenID = "042a5ab9-3f36-4d6e-a7c8-fcdc901c7e2d"
+tokenID = "2435ceda-7fbe-41d7-8b6d-dd82f3703d12"
 
 headers = {
     "Accept": "application/json",
     "Authorization": f"Bearer {jwtToken}"
 }
 
-response = requests.request("GET", f"{baseUrl}/{tokenID}", headers=headers)
+try:
+    response = requests.request("GET", f"{baseUrl}/{tokenID}", headers=headers)
 
-if response.ok:
-    # Returns JSON array containing tokens, do something with these...
-    token = response.json()
-    print(token)
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+    if response.ok:
+        # Returns JSON array containing tokens, do something with these...
+        token = response.json()
+        print(token)
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
+
+except Exception as ex:
+    print(ex)

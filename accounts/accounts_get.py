@@ -27,19 +27,22 @@ headers = {
     "Authorization": f"Bearer {jwtToken}"
 }
 
-response = requests.request("GET", baseUrl, headers=headers)
+try:
+    response = requests.request("GET", baseUrl, headers=headers)
 
+    if response.ok:
+        # Convert JSON response to Python dict
+        accountList = response.json()
 
-if response.ok:
-    # Convert JSON response to Python dict
-    accountList = response.json()
+        # example: view keys/values for each account in the list
+        for account in accountList:
+            for accountField in account.keys():
+                print(f"{accountField}: {account[accountField]}")
+            # Print a blank line between accounts for readability
+            print()
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
 
-    # example: view keys/values for each account in the list
-    for account in accountList:
-        for accountField in account.keys():
-            print(f"{accountField}: {account[accountField]}")
-        # Print a blank line between accounts for readability
-        print()
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+except Exception as ex:
+    print(ex)

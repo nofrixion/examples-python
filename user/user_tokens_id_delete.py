@@ -20,18 +20,22 @@ import os
 jwtToken = os.environ['NOFRIXION_USER_TOKEN']
 
 baseUrl = "https://api-sandbox.nofrixion.com/api/v1/user/tokens"
-tokenID = "010204be-9229-4ff4-8fa0-bb42ea3465d1"
+tokenID = "2435ceda-7fbe-41d7-8b6d-dd82f3703d12"
 
 headers = {
     "Accept": "application/json",
     "Authorization": f"Bearer {jwtToken}"
 }
 
-response = requests.request("DELETE", f"{baseUrl}/{tokenID}", headers=headers)
+try:
+    response = requests.request("DELETE", f"{baseUrl}/{tokenID}", headers=headers)
 
-if response.ok:
-    # Returns HTTP status 200 on successful delete.
-    print(response.status_code)
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+    if response.ok:
+        # Returns HTTP status 200 on successful delete.
+        print(response.status_code)
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
+
+except Exception as ex:
+    print(ex)

@@ -30,15 +30,18 @@ refreshToken = {
     "refreshToken": "v1.Me3Ofa9G9pZxLgqhJOaO3rnPv7iRjGY9gH7XysJr8KN5T7u3dd0gOyMyO4u2W3Rmz1Zb1rsksBlGJw7TaT6qSP0"
 }
 
-response = requests.request("POST", baseUrl, headers=headers, data=refreshToken)
+try:
+    response = requests.request("POST", baseUrl, headers=headers, data=refreshToken)
 
-if response.ok:
-    # The json response contains the new user token (accessToken) and a new refresh token (refreshToken)
-    # Save these, the are not stored in the database.
-    newTokens = response.json()
-    print(newTokens["accessToken"])
-    print(newTokens["refreshToken"])
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+    if response.ok:
+        # The json response contains the new user token (accessToken) and a new refresh token (refreshToken)
+        # Save these, the are not stored in the database.
+        newTokens = response.json()
+        print(newTokens["accessToken"])
+        print(newTokens["refreshToken"])
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
 
+except Exception as ex:
+    print(ex)

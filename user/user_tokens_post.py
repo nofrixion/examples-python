@@ -31,15 +31,19 @@ tokenData = {
     "Description": "API Created Token"
 }
 
-response = requests.request("POST", baseUrl, headers=headers, data=tokenData)
+try:
+    response = requests.request("POST", baseUrl, headers=headers, data=tokenData)
 
-if response.ok:
-    # After pre-token creation, redirect the user to the approveTokenUrl
-    # where they will be asked to perform strong authentication and then redirected back
-    # to the NoFrixion portal where their token and refresh token will be visible.
-    preToken = response.json()
-    print(preToken["approveTokenUrl"])
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+    if response.ok:
+        # After pre-token creation, redirect the user to the approveTokenUrl
+        # where they will be asked to perform strong authentication and then redirected back
+        # to the NoFrixion portal where their token and refresh token will be visible.
+        preToken = response.json()
+        print(preToken["approveTokenUrl"])
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
+        
+except Exception as ex:
+    print(ex)
 

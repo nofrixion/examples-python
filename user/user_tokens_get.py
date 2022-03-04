@@ -26,14 +26,18 @@ headers = {
     "Authorization": f"Bearer {jwtToken}"
 }
 
-response = requests.request("GET", baseUrl, headers=headers)
+try:
+    response = requests.request("GET", baseUrl, headers=headers)
 
-if response.ok:
-    # Returns JSON array containing tokens, do something with these...
-    tokens = response.json()
-    for token in tokens:
-        print(token)
-        print() # blank line for readability
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+    if response.ok:
+        # Returns JSON array containing tokens, do something with these...
+        tokens = response.json()
+        for token in tokens:
+            print(token)
+            print() # blank line for readability
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
+        
+except Exception as ex:
+    print(ex)

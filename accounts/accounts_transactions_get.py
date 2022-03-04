@@ -33,30 +33,33 @@ headers = {
     "Authorization": f"Bearer {jwtToken}"
 }
 
-response = requests.request("GET", f"{baseUrl}/{accountId}/transactions{queryParams}", headers=headers)
+try:
+    response = requests.request("GET", f"{baseUrl}/{accountId}/transactions{queryParams}", headers=headers)
 
-if response.ok:
-    # The response is a JSON object containing
-    # - transactions: a property that is an array of JSON objects
-    # - metdata fields: 'page', 'pageStartBalance', 'size', 'totalPages', 'totalSize'
-    #   - these can be used to help with pagination of results (and can be passed in the query string)
+    if response.ok:
+        # The response is a JSON object containing
+        # - transactions: a property that is an array of JSON objects
+        # - metdata fields: 'page', 'pageStartBalance', 'size', 'totalPages', 'totalSize'
+        #   - these can be used to help with pagination of results (and can be passed in the query string)
 
-    data = response.json()
+        data = response.json()
 
-    # example: view keys/values for each transaction in the list
-    # you will notice that the "merchantAccount" property contains further nested objects
+        # example: view keys/values for each transaction in the list
+        # you will notice that the "merchantAccount" property contains further nested objects
 
-    for transaction in data['transactions']:
-        for transactionField in transaction.keys():
-            print(f"{transactionField}: {transaction[transactionField]}")
-        # Print a blank line between transactions for readability
-        print()
+        for transaction in data['transactions']:
+            for transactionField in transaction.keys():
+                print(f"{transactionField}: {transaction[transactionField]}")
+            # Print a blank line between transactions for readability
+            print()
 
-    # use metadata to summarise displayed transactions
-    print(f"Showing page {data['page'] + 1} of {data['totalPages'] + 1}. {data['totalSize']} transactions in total.")
-else:
-    # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
-    print(response.json())
+        # use metadata to summarise displayed transactions
+        print(f"Showing page {data['page'] + 1} of {data['totalPages'] + 1}. {data['totalSize']} transactions in total.")
+    else:
+        # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
+        print(response.json())
 
+except Exception as ex:
+    print(ex)
 
 
