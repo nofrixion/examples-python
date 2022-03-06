@@ -29,8 +29,8 @@ headers = {
 
 paymentRequestData = {
     "MerchantID": "AB4476A1-8364-4D13-91CE-F4C4CA4EE6BE",
-    "Amount": "0.01",
-    "Currency": "EUR",
+    "Amount": "0.99",
+    "Currency": "GBP",
     "CustomerID": "C202202024158",
     "OrderID": "Sample order",
     #The methods below allow the purchaser to choose from those listed - BTC lightning payments coming soon!
@@ -40,7 +40,7 @@ paymentRequestData = {
     "OriginUrl": "https://some.origin.url",
     "CallbackUrl": "https://some.callback.url",
     #PISP specific fields
-    "PispAccountID": "A120P0JR",
+    "PispAccountID": "A120P0JQ",
     "PispRecipientReference": "Recipient ref",
     #Card specific fields
     "CardAuthorizeOnly": "true",
