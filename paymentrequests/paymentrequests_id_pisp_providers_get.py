@@ -7,7 +7,7 @@
 # 2. Set the token as an environment variable in your console:
 #    set NOFRIXION_USER_TOKEN=<JWT token from previous step>
 # 3. Run the script using the command: python -u "filename"
-# 4. If successful the list of payment providers will be displayed.
+# 4. If successful the list of payment initiation service providers will be displayed.
 #-----------------------------------------------------------------------------
 
 # The 'requests' library for Python can be used to make calls to the MoneyMoov API in
@@ -31,7 +31,7 @@ try:
     response = requests.request("GET", f"{baseUrl}/{paymentRequestID}/pisp/providers", headers=headers)
 
     if response.ok:
-        #  If successful, the API returns the list of pisp payment providers
+        #  If successful, the API returns the list of payment initiation service providers
         print(response.json())
     else:
         # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
