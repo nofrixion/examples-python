@@ -1,13 +1,16 @@
 #-----------------------------------------------------------------------------
-# Description: Example of calling the NoFrixion MoneyMoov API payouts POST 
-# method. It provides a way to retrieve a payment request
+# Description: Example of calling the NoFrixion MoneyMoov API 
+# paymentrequests/{id}/card/paywithtoken POST method. It submits payment request   
+# using a tokenised card to the payment gateway.
+#
 # Usage:
 # 1. Create a user access token in the sandbox portal at:
 #    https:#portal-sandbox.nofrixion.com.
 # 2. Set the token as an environment variable in your console:
 #    set NOFRIXION_USER_TOKEN=<JWT token from previous step>
 # 3. Run the script using the command: python -u "filename"
-# 4. If successful the specified payment request object will be displayed.
+# 4. If successful a JSON object containing the card payment respone
+#    model will be displayed
 #-----------------------------------------------------------------------------
 
 # The 'requests' library for Python can be used to make calls to the MoneyMoov API in
@@ -20,18 +23,28 @@ import os
 jwtToken = os.environ['NOFRIXION_MERCHANT_TOKEN']
 
 baseUrl = "https://api-sandbox.nofrixion.com/api/v1/paymentrequests"
-paymentRequestID = "07c1e19c-2960-40e5-9888-08d9f65a6611"
+
+# the ID of the payment request with PaymentMethodTypes of "cardtoken".
+paymentRequestID = "0095a5f3-1cb9-4de0-9d32-08d9f6a98048"
 
 headers = {
     "Accept": "application/json",
     "Authorization": f"Bearer {jwtToken}"
 }
 
+paymentDetails = {
+    "CustomerID": "D95D20B09846BDCEE053A2598D0A378B",
+    "PaymentInitiator": "Customer",
+    "MerchantStandardReason": "None",
+    "CommerceIndicator": "internet",
+    "PreviousTransactionID": "123456789012345"
+}
+
 try:
-    response = requests.request("GET", f"{baseUrl}/{paymentRequestID}", headers=headers)
+    response = requests.request("POST", f"{baseUrl}/{paymentRequestID}/card/paywithtoken", headers=headers, data=paymentDetails)
 
     if response.ok:
-        #  If successful, the API returns the payment request object
+        #   On success, the API returns the card payment response model 
         print(response.json())
     else:
         # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)

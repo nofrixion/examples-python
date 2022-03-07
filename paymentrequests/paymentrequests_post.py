@@ -33,22 +33,22 @@ paymentRequestData = {
     "Currency": "EUR",
     "CustomerID": "C202202024158",
     "OrderID": "Sample order",
-    #The methods below allow the purchaser to choose from those listed - BTC lightning payments coming soon!
+    # The methods below allow the purchaser to choose from those listed - BTC lightning payments coming soon!
     "PaymentMethodTypes": "card,pisp",
     "Description": "API Payment request",
-    #URLs to integrate with merchant's site (required for card payments)
+    # URLs to integrate with merchant's site (required for card payments)
     "OriginUrl": "https://some.origin.url",
     "CallbackUrl": "https://some.callback.url",
-    #PISP specific fields
+    # PISP specific fields
     "PispAccountID": "A120P0JR",
     "PispRecipientReference": "Recipient ref",
-    #Card specific fields
+    # Card specific fields
     "CardAuthorizeOnly": "true",
     "CardCreateToken": "false",
     "IgnoreAddressVerification": "true",
     "CardIgnoreCVN": "true"
-    #Shipping and billing address data can also be included in the payment request
-    #=> see https://api-sandbox.nofrixion.com/swagger/index.html for a complete reference.
+    # Shipping and billing address data can also be included in the payment request
+    # => see https://api-sandbox.nofrixion.com/swagger/index.html for a complete reference.
 }
 
 try:
