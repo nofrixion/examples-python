@@ -33,7 +33,7 @@ try:
     response = requests.request("GET", f"{baseUrl}/{paymentRequestID}/result", headers=headers)
 
     if response.ok:
-        #  If successful, the API returns the payment request object
+        #  If successful, the API returns the payment request result object
         print(response.json())
     else:
         # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
