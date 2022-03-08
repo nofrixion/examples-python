@@ -23,15 +23,20 @@ import os
 jwtToken = os.environ['NOFRIXION_MERCHANT_TOKEN']
 
 baseUrl = "https://api-sandbox.nofrixion.com/api/v1/paymentrequests"
-paymentRequestID = "07b8f673-e3bb-4e1c-9d2b-08d9f6a98048"
+paymentRequestID = "59c8046d-46d6-4bf3-9d2f-08d9f6a98048"
 
 headers = {
     "Accept": "application/json",
     "Authorization": f"Bearer {jwtToken}"
 }
 
+# need to specify authorizationID of transaction to be voided
+postData = {
+    "authorizationID": "6466136573106243304005"
+}
+
 try:
-    response = requests.request("POST", f"{baseUrl}/{paymentRequestID}/card/void", headers=headers)
+    response = requests.request("POST", f"{baseUrl}/{paymentRequestID}/card/void", headers=headers, data=postData)
 
     if response.ok:
         #  On successful void, the API returns the card payment response model with 'status': 'VOIDED'
