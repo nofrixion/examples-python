@@ -23,19 +23,21 @@ import os
 jwtToken = os.environ['NOFRIXION_MERCHANT_TOKEN']
 
 baseUrl = "https://api-sandbox.nofrixion.com/api/v1/paymentrequests"
-paymentRequestID = "1e029816-92cc-4285-9887-08d9f65a6611"
+
+paymentRequestID = "187ec02c-860f-4414-ccb5-08da00f4d66d"
 
 headers = {
     "Accept": "application/json",
     "Authorization": f"Bearer {jwtToken}"
 }
 
-paymentAmount = {
-    "amount": "0.99"
+postData = {
+    "AuthorizationID": "6467848603196559404005",
+    "Amount": "0.10"
 }
 
 try:
-    response = requests.request("POST", f"{baseUrl}/{paymentRequestID}/card/capture", headers=headers, data=paymentAmount)
+    response = requests.request("POST", f"{baseUrl}/{paymentRequestID}/card/capture", headers=headers, data=postData)
 
     if response.ok:
         #   On success, the API returns the card payment response model 
