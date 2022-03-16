@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------
 # Description: Example of calling the NoFrixion MoneyMoov API  
-# paymentrequests/{id}/result method. It provides a convenient way to check 
-# the status of a payment request.
+# paymentrequests/{id}/events method. It provides a convenient way to check 
+# all events associated with a payment request.
 #
 # Usage:
 # 1. Create a user access token in the sandbox portal at:
@@ -9,7 +9,7 @@
 # 2. Set the token as an environment variable in your console:
 #    set NOFRIXION_USER_TOKEN=<JWT token from previous step>
 # 3. Run the script using the command: python -u "filename"
-# 4. If successful the specified payment request result object will be displayed.
+# 4. If successful the specified payment request events object will be displayed.
 #-----------------------------------------------------------------------------
 
 # The 'requests' library for Python can be used to make calls to the MoneyMoov API in
