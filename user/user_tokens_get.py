@@ -20,6 +20,7 @@ import os
 jwtToken = os.environ['NOFRIXION_USER_TOKEN']
 
 baseUrl = "https://api-sandbox.nofrixion.com/api/v1/user/tokens"
+# Response is paged, so page number and tokens/page can be specified as query paramaters
 
 headers = {
     "Accept": "application/json",
@@ -30,11 +31,9 @@ try:
     response = requests.request("GET", baseUrl, headers=headers)
 
     if response.ok:
-        # Returns JSON array containing tokens, do something with these...
-        tokens = response.json()
-        for token in tokens:
-            print(token)
-            print() # blank line for readability
+        # Returns JSON object containing page metadata and tokens (stored in 'content' property, do something with these).
+        tokensPage = response.json()
+        print(tokensPage["content"])
     else:
         # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
         print(response.json())
