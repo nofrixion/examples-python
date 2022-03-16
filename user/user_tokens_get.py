@@ -20,7 +20,9 @@ import os
 jwtToken = os.environ['NOFRIXION_USER_TOKEN']
 
 baseUrl = "https://api-sandbox.nofrixion.com/api/v1/user/tokens"
-# Response is paged, so page number and tokens/page can be specified as query paramaters
+
+# Note optional url paramaters for paging the token list are exposed in the API
+# - see https://api-sandbox.nofrixion.com/swagger/index.html for full details
 
 headers = {
     "Accept": "application/json",
