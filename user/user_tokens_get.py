@@ -31,8 +31,9 @@ try:
     response = requests.request("GET", baseUrl, headers=headers)
 
     if response.ok:
-        # Returns JSON object containing page metadata and tokens (stored in 'content' property, do something with these).
+        # Returns JSON object containing page metadata and tokens.
         tokensPage = response.json()
+        #  User tokens are stored in 'content' property, do something with these...
         print(tokensPage["content"])
     else:
         # If not OK, response contains MoneyMoov problem (https://docs.nofrixion.com/reference/error-messages)
